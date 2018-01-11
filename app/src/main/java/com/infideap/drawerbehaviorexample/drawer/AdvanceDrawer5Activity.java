@@ -16,7 +16,7 @@ import android.view.View;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 import com.infideap.drawerbehaviorexample.R;
 
-public class AdvanceDrawer1Activity extends AppCompatActivity
+public class AdvanceDrawer5Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private AdvanceDrawerLayout drawer;
@@ -24,7 +24,7 @@ public class AdvanceDrawer1Activity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advance1);
+        setContentView(R.layout.activity_advance5);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,8 +46,9 @@ public class AdvanceDrawer1Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        drawer.useCustomBehavior(Gravity.START);
-        drawer.useCustomBehavior(Gravity.END);
+        drawer.setViewScale(Gravity.START, 0.9f);
+        drawer.setRadius(Gravity.START, 35);
+        drawer.setViewElevation(Gravity.START, 20);
 
 
     }
@@ -79,7 +80,7 @@ public class AdvanceDrawer1Activity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.action_right_drawer:
                 drawer.openDrawer(Gravity.END);
                 return true;

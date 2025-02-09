@@ -1,20 +1,17 @@
 apply plugin: 'com.android.library'
-ext{
-    PUBLISH_GROUP_ID= 'com.infideap.drawerbehavior'
-    PUBLISH_ARTIFACT_ID= 'drawer-behavior'
-    PUBLISH_VERSION= '0.0.6'
-}
+apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -32,13 +29,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:design:25.4.0'
-    implementation 'com.android.support:cardview-v7:25.4.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation 'com.github.rjsvieira:morphos:1.0.0'
 
 
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/' +
-        'master/android-release-aar.gradle'
+publish {
+    def groupProjectID = 'com.infideap.drawerbehavior'
+    def artifactProjectID = 'drawer-behavior'
+    def publishVersionID = '1.0.3'
+
+    userOrg = 'infideap2'
+    repoName = "Drawer-Behavior"
+    uploadName = "Drawer-Behavior"
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = ''
+    website = 'https://github.com/shiburagi/Drawer-Behavior'
+}
+repositories {
+    mavenCentral()
+}
